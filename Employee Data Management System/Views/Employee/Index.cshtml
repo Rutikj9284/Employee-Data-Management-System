@@ -1,0 +1,69 @@
+﻿@model List<Employee_Data_Management_System.Models.EmployeeViewModel>
+
+@{
+    ViewData["Title"] = "Employee Data";
+    var successMessage = TempData["successMessage"]?.ToString();
+    var errorMessage = TempData["errorMessage"]?.ToString();
+}
+<h3>@ViewData["Title"]</h3>
+<hr />
+@if (!string.IsNullOrWhiteSpace(successMessage))
+{
+    <div class="alert alert-success">
+        <strong>Success!</strong>@successMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+    </div>
+}
+else if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">
+        <strong>Failed!</strong>@errorMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+    </div>
+}
+<form>
+    <button asp-action="Create" asp-controller="Employee" class="btn btn-outline-info mb-3">Create New Employee</button>
+    <table class="table table-responsive table-hover table-bordered">
+        <thead>
+            <tr class="table-active">
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date Of Birth</th>
+                <th>Experience</th>
+                <th>Salary</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model != null && Model.Any())
+            {
+                @foreach(var employee in Model)
+                {
+                    <tr>
+                        <td>@employee.Id</td>
+                        <td>@employee.FullName</td>
+                        <td>@employee.DOB.ToString("dd/MM/yyyy")</td>
+                        <td>@employee.Experience</td>
+                        <td>@employee.Salary</td>
+                        <td>
+                            <div class="btn-group btn-group-sm">
+                                <a asp-controller="Employee" asp-action="Edit" asp-route-id="@employee.Id" class="btn btn-outline-primary">Edit</a>
+                                <a asp-controller="Employee" asp-action="Delete" asp-route-id="@employee.Id" class="btn btn-outline-danger">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="6">
+                        <div>
+                            Unfortunately, No Employee Data Avaialable At This Moment!
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>

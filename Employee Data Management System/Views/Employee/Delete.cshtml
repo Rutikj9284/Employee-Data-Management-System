@@ -1,0 +1,44 @@
+﻿@model Employee_Data_Management_System.Models.EmployeeViewModel;
+
+@{
+    ViewData["Title"] = "Delete Employee Data";
+    var errorMessage = TempData["errorMessage"]?.ToString();
+}
+<h3>@ViewData["Title"]</h3>
+<br />
+@if (!string.IsNullOrWhiteSpace(errorMessage))
+{
+    <div class="alert alert-danger">
+        <strong>Failed!</strong>@errorMessage
+        <button type="button" class="btn-close float-end" data-bs-dismiss="alert"></button>
+    </div>
+}
+<form action="Delete" method="post" autocomplete="off">
+    <div>
+        <label class="form-label">Id</label>
+        <input type="text" class="form-control" asp-for="Id" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control" asp-for="FirstName" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" asp-for="LastName" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Date Of Birth</label>
+        <input type="date" class="form-control" asp-for="DOB" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Experience</label>
+        <input type="text" class="form-control" asp-for="Experience" readonly />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Salary</label>
+        <input type="text" class="form-control" asp-for="Salary" readonly />
+    </div>
+    <div class="d-grid">
+        <button type="submit" class="btn btn-outline-danger" onclick="return confirm ('Employee @Model.FullName will get deleted permanently')">Delete</button>
+    </div>
+</form>

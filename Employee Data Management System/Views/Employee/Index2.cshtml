@@ -1,0 +1,39 @@
+﻿@model Employee_Data_Management_System.Models.EmployeeViewModel;
+
+@{
+    ViewData["Title"] = "Create Employee";
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr />
+<form action="Create" method="post">
+    <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control" asp-for="FirstName" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control" asp-for="LastName" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Date Of Birth</label>
+        <input type="date" class="form-control" asp-for="DOB" />
+        <span asp-validation-for="DOB" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Experience</label>
+        <input type="text" class="form-control" asp-for="Experience" />
+        <span asp-validation-for="Experience" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Salary</label>
+        <input type="text" class="form-control" asp-for="Salary" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+
